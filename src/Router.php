@@ -32,7 +32,7 @@ class Router{
      * @param string $url
      * @param string $view
      * @param string|null $name
-     * @return void
+     * @return self
      */
     public function get(string $url, string $view, ?string $name = null)
     {
@@ -44,7 +44,7 @@ class Router{
      * revoi l'url avec les paramètres
      * @param string $name
      * @param array $params
-     * @return void
+     * @return self
      */
     public function url(string $name, array $params = [])
     {
@@ -54,7 +54,7 @@ class Router{
 
     /**
      * renvoi la route séléctionné
-     * @return void
+     * @return self
      */
     public function run()
     {
