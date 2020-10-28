@@ -30,8 +30,13 @@ class Post{
         return $this->name;
     }
 
+     public function getFormattedContent(): ?string
+    {
+        return nl2br(e( $this->content));
+    }
+
     /**
-     * récupère le contenu couper à 60 caractère
+     * permet d'afficher un extrait du contenu de l'article couper à 60 caractère
      * @return string|null
      */
     public function getExcerpt (): ?string 

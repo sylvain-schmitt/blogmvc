@@ -26,7 +26,7 @@ $query = $pdo->query("SELECT * FROM post ORDER BY created_at DESC LIMIT  $perPag
 $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
 ?>
 
-<h1>Bienvenu sur mon blog</h1>
+<h1>Bienvenue sur mon blog</h1>
 
 <!--début contenu-->
 <div class="row">
