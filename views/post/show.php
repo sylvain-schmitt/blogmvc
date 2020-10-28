@@ -4,6 +4,7 @@ use App\Connection;
 use App\Model\Post;
 use App\Model\Category;
 
+
 $id = (int)$params['id'];
 $slug = $params['slug'];
 
@@ -37,6 +38,7 @@ $query->execute(['id' => $post->getId()]);
 $query->setFetchMode(PDO::FETCH_CLASS, Category::class);
 /** @var Category[] */
 $categories = $query->fetchAll();
+$title = $post->getName();
 ?>
 
 <h1 class="card-title"><?= e ($post->getName()) ?></h1>

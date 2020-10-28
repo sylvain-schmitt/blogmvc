@@ -10,11 +10,11 @@ $title ='Mon Blog';
 //nouvelle instance de connection à la base de donnée
 $pdo = Connection::getPDO();
 
-$currentPage = URL::getPositiveInt('page', 1);
 
 /**
  * requète sur la table 'post' pour récupérer les articles et les positionné 12 par page
  */
+$currentPage = URL::getPositiveInt('page', 1);
 $count = (int)$pdo->query('SELECT COUNT(id) FROM post')->fetch(PDO::FETCH_NUM)[0];
 $perPage = 12;
 $pages = ceil($count / $perPage);
