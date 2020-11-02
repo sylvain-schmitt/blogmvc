@@ -1,9 +1,6 @@
 <?php
-use App\Helpers\Text;
-use App\URL;
 use App\Connection;
-use App\Model\Post;
-use App\PaginatedQuery;
+use App\Table\PostTable;
 
 //variable pour geré le titre par page
 $title ='Mon Blog';
@@ -11,13 +8,10 @@ $title ='Mon Blog';
 //nouvelle instance de connection à la base de donnée
 $pdo = Connection::getPDO();
 
-//paramètre pour la pagination de tous les articles
-$paginatedQuery = new PaginatedQuery(
-    "SELECT * FROM post ORDER BY created_at DESC",
-    "SELECT COUNT(id) FROM post",
-);
-/** @var Post[] */
-$posts = $paginatedQuery->getItems(Post::class);
+//recupère la liste des articles de façon paginé
+$table = new PostTable($pdo);
+[$posts, $pagination] = $table->FindPaginated();
+
 $link = $router->url('home');
 ?>
 
@@ -36,7 +30,7 @@ $link = $router->url('home');
 
 <!--début pagination-->
 <div class="d-flex justify-content-between my-4">
-      <?= $paginatedQuery->previousLink($link);?>
-      <?= $paginatedQuery->nextLink($link);?>
+      <?= $pagination->previousLink($link);?>
+      <?= $pagination->nextLink($link);?>
 </div>
 <!--fin pagination-->

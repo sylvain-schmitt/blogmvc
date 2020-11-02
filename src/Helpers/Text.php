@@ -9,7 +9,6 @@ class Text {
 
     /**
      * fonction qui coupe un paragraphe avec une limite de 60 caractère
-     *
      * @param string $content
      * @param integer $limit
      * @return void
@@ -20,6 +19,6 @@ class Text {
             return $content;
         }
         $lastSpace = mb_strpos($content, ' ', $limit);
-        return mb_substr($content, 0, $lastSpace) . '...';
+        return mb_substr($content, 0, $lastSpace) . ' ...';
     }
 }

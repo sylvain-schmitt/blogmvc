@@ -30,6 +30,24 @@ class Post{
         return $this->name;
     }
 
+    public function setName (string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getContent (): ?string 
+    {
+        return $this->content;
+    }
+
+
+    public function setContent (string $content): self
+    {
+        $this->content = $content;
+        return $this;
+    }
+
      public function getFormattedContent(): ?string
     {
         return nl2br(e( $this->content));
@@ -47,6 +65,12 @@ class Post{
         return nl2br(htmlentities((Text::excerpt($this->content, 60))));
     }
 
+    public function setCreatedAt (string $created_at): self
+    {
+        $this->created_at = $created_at;
+        return $this;
+    }
+
     /**
      * récupère la date de l'article
      * @return DateTime
@@ -54,6 +78,12 @@ class Post{
     public function getCreatedAt (): DateTime 
     {
         return new DateTime($this->created_at);
+    }
+
+    public function setSlug (string $slug): self
+    {
+        $this->slug = $slug;
+        return $this;
     }
 
     /**
@@ -74,5 +104,23 @@ class Post{
         return $this->id;
     }
 
+    /**
+     * retourne un tableau de catégories
+     * @return Category[]
+     */
+    public function getCategories(): array
+    {
+        return $this->categories;
+    }
 
+    /**
+     * ajoute ue catégorie au tableau de catégories d'un article
+     * @param Category $category
+     * @return void
+     */
+    public function addCategory(Category $category): void
+    {
+        $this->categories[] = $category;
+        $category->setPost($this);
+    }
 }

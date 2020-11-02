@@ -6,20 +6,13 @@ namespace App;
  */
 class Router{
 
-    /**
-     * @var string
-     */
+    
     private $viewPath;
 
-    /**
-     * @var AltoRouter
-     */
+    
     private $router;
 
-    /**
-     * constructeur du routeur 
-     * @param string $viewPath
-     */
+    
     public function __construct(string $viewPath)
     {
         $this->viewPath = $viewPath;
@@ -27,35 +20,35 @@ class Router{
     }
 
 
-    /**
-     * renvoi l'url récuperer en GET
-     * @param string $url
-     * @param string $view
-     * @param string|null $name
-     * @return self
-     */
+    
     public function get(string $url, string $view, ?string $name = null)
     {
         $this->router->map('GET', $url, $view, $name);
         return $this;
     }
 
-    /**
-     * revoi l'url avec les paramètres
-     * @param string $name
-     * @param array $params
-     * @return self
-     */
+   
+    public function post(string $url, string $view, ?string $name = null)
+    {
+        $this->router->map('POST', $url, $view, $name);
+        return $this;
+    }
+
+    public function match(string $url, string $view, ?string $name = null)
+    {
+        $this->router->map('POST|GET', $url, $view, $name);
+        return $this;
+    }
+
+
+    
     public function url(string $name, array $params = [])
     {
        
         return $this->router->generate($name, $params);
     }
 
-    /**
-     * renvoi la route séléctionné
-     * @return self
-     */
+    
     public function run()
     {
         $match = $this->router->match();

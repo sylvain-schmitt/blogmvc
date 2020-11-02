@@ -7,10 +7,10 @@ namespace App\Model;
 class Category {
 
     private $id;
-
     private $slug;
-
     private $name;
+    private $post_id;
+    private $post;
 
     /**
      * récupère l'id de la catégorie
@@ -37,5 +37,19 @@ class Category {
     public function getName(): ?string
     {
         return $this->name;
+    }
+
+    /**
+     * retourne l'id d'une catégorie associé à un article
+     * @return integer|null
+     */
+    public function getPostId(): ?int
+    {
+        return $this->post_id;
+    }
+
+    public function setPost(Post $post)
+    {
+        $this->post = $post;
     }
 }
